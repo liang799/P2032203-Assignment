@@ -18,7 +18,7 @@ design requirements.
 ## "Data Input" Activity
 ## "Information Display" Activity
 
-## Prototype 1
+## Prototype
 ![overview](pics/overview.png)
 
 
