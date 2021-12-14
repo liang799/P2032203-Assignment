@@ -17,3 +17,9 @@ design requirements.
 
 ## "Data Input" Activity
 ## "Information Display" Activity
+
+## Prototype
+![overview](pics/overview.png)
+
+
+Click this [link](https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/) to try it out
