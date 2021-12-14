@@ -1,4 +1,4 @@
-# P2032203-Assignment
+# P2032203-Assignment 
 MAD Lab Assignment done during Y2S2 Holidays
 
 ## Concept
@@ -17,3 +17,7 @@ design requirements.
 
 ## "Data Input" Activity
 ## "Information Display" Activity
+
+## Prototype 1
+![overview](pics/overview.png)
+Click this [link](https://xd.adobe.com/view/2ab55f7a-1fb0-4f49-bfcc-20b372b67357-7fe6/) to try it out
