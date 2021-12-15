@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P2032203Assignment">
         <activity
-            android:name=".Home"
+            android:name=".Main"
             android:exported="false" />
         <activity
             android:name=".Splash"

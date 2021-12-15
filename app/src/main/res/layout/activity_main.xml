@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="#FFFFFF"
-    tools:context=".Home">
+    tools:context=".Main">
 
     <FrameLayout
         android:layout_width="0dp"
