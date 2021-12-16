@@ -8,11 +8,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.P2032203Assignment">
+        android:theme="@style/Theme.AppCompat.Light">
+<!--        android:theme="@style/Theme.P2032203Assignment">-->
+
         <activity
             android:name=".Main"
-            android:exported="false" />
-        <activity
+            android:exported="false"
+            android:theme="@style/Theme.P2032203Assignment.NoActionBar"/>
+    <activity
             android:name=".Splash"
             android:exported="true">
             <intent-filter>
