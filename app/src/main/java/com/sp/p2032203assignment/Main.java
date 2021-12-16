@@ -16,7 +16,7 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar); //use androidx instead of support.v7.
         setSupportActionBar(myToolbar);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
