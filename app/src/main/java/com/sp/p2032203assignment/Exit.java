@@ -45,12 +45,8 @@ public class Exit extends Fragment implements View.OnClickListener {
                 System.exit(0);
                 break;
             case R.id.no_exit:
-                Fragment fragment = new Home();
-
-                FragmentManager fm = getSupportFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.fragment, fragment);
-                transaction.commit();
+                FragmentManager fm = getParentFragmentManager();
+                fm.popBackStack();
                 break;
         }
 
