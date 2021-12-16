@@ -3,63 +3,56 @@ package com.sp.p2032203assignment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Exit#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Exit extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class Exit extends Fragment implements View.OnClickListener {
+    private Button buttonYes;
+    private Button buttonNo;
 
     public Exit() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Exit.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Exit newInstance(String param1, String param2) {
-        Exit fragment = new Exit();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         getActivity().setTitle("Exit Confirmation");
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, //usually is super.onCreate --> inflate layout --> Button initialisation
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_exit, container, false);
+        View view = inflater.inflate(R.layout.fragment_exit, container, false);
+        buttonYes = (Button) view.findViewById(R.id.exit_me);
+        buttonYes.setOnClickListener(this);
+        buttonNo = (Button) view.findViewById(R.id.no_exit);
+        buttonNo.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.exit_me:
+                getActivity().finish();
+                System.exit(0);
+                break;
+            case R.id.no_exit:
+                Fragment fragment = new Home();
+
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.fragment, fragment);
+                transaction.commit();
+                break;
+        }
+
     }
 }
