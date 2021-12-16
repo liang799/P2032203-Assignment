@@ -38,7 +38,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/parcel_input"
                     android:layout_width="300dp"
                     android:layout_height="40dp"
                     android:background="@drawable/rounded_edittext"
@@ -70,7 +70,7 @@
                 android:layout_height="match_parent">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName4"
+                    android:id="@+id/location_input"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:background="@drawable/rounded_edittext"
@@ -81,7 +81,7 @@
                     android:textSize="14sp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/add_location"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="3dp"
@@ -110,7 +110,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/photo_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -118,7 +118,7 @@
                     android:textSize="14sp" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/add_photo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -151,14 +151,14 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/deliver_yes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="-10dp"
                         android:text="Yes" />
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/deliver_no"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
@@ -175,10 +175,9 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/kancel_button"
                 android:layout_width="155dp"
                 android:layout_height="52dp"
-                android:layout_marginLeft="30dp"
                 android:backgroundTint="@color/white"
                 android:text="Cancel"
                 android:textAllCaps="false"
@@ -186,7 +185,7 @@
                 app:cornerRadius="45dp" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/save_button"
                 android:layout_width="155dp"
                 android:layout_height="52dp"
                 android:layout_marginLeft="30dp"
