@@ -23,6 +23,7 @@
             android:layout_marginBottom="48dp"
             android:gravity="center"
             android:text="Do you want to exit this app?"
+            android:textColor="@color/black"
             android:textSize="30sp" />
 
         <Button
