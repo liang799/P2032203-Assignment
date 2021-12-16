@@ -46,7 +46,9 @@ public class Exit extends Fragment implements View.OnClickListener {
                 break;
             case R.id.no_exit:
                 FragmentManager fm = getParentFragmentManager();
-                fm.popBackStack();
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.fragment, BlankFragment.class, null);  // Replace whatever is in the fragment_container view with this fragment
+                transaction.commit();   // Commit the transaction
                 break;
         }
 
