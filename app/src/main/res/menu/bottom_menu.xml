@@ -6,11 +6,19 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home" />
     <item
-        android:id="@+id/dataInput"
+        android:id="@+id/display"
         android:icon="@drawable/ic_baseline_format_list_bulleted_24"
         android:title="Data" />
     <item
-        android:id="@+id/add"
+        android:id="@+id/dataInput"
         android:icon="@drawable/ic_baseline_add_circle_outline_24"
         android:title="Input" />
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_outline_info_24"
+        android:title="About" />
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="Exit App" />
 </menu>

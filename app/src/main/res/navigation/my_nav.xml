@@ -16,8 +16,18 @@
         android:label="fragment_data_input"
         tools:layout="@layout/fragment_data_input" />
     <fragment
-        android:id="@+id/add"
-        android:name="com.sp.p2032203assignment.Add"
-        android:label="fragment_add"
-        tools:layout="@layout/fragment_add" />
+        android:id="@+id/display"
+        android:name="com.sp.p2032203assignment.InformationDisplay"
+        android:label="fragment_display"
+        tools:layout="@layout/fragment_display" />
+    <fragment
+        android:id="@+id/about"
+        android:name="com.sp.p2032203assignment.About"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/exit"
+        android:name="com.sp.p2032203assignment.Exit"
+        android:label="fragment_exit"
+        tools:layout="@layout/fragment_exit" />
 </navigation>

@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Add#newInstance} factory method to
+ * Use the {@link InformationDisplay#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Add extends Fragment {
+public class InformationDisplay extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class Add extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Add() {
+    public InformationDisplay() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class Add extends Fragment {
      * @return A new instance of fragment Add.
      */
     // TODO: Rename and change types and number of parameters
-    public static Add newInstance(String param1, String param2) {
-        Add fragment = new Add();
+    public static InformationDisplay newInstance(String param1, String param2) {
+        InformationDisplay fragment = new InformationDisplay();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class Add extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add, container, false);
+        return inflater.inflate(R.layout.fragment_display, container, false);
     }
 }
