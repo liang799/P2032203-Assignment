@@ -1,5 +1,9 @@
 package com.sp.p2032203assignment;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -31,6 +38,9 @@ public class DataInput extends Fragment implements View.OnClickListener {
 
     private Button buttonSave;
     private Button buttonCancel;
+    private ImageButton buttonPhoto;
+
+    private TextView Photo_status;
 
     public DataInput() {
         // Required empty public constructor
@@ -69,10 +79,13 @@ public class DataInput extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_input, container, false);
+        Photo_status = (TextView) view.findViewById(R.id.photo_status);
         buttonSave = (Button) view.findViewById(R.id.save_button);
         buttonSave.setOnClickListener(this);
         buttonCancel = (Button) view.findViewById(R.id.kancel_button);
         buttonCancel.setOnClickListener(this);
+        buttonPhoto = (ImageButton) view.findViewById(R.id.add_photo);
+        buttonPhoto.setOnClickListener(this);
         return view;
     }
 
@@ -86,6 +99,26 @@ public class DataInput extends Fragment implements View.OnClickListener {
             case R.id.kancel_button:
                 Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
                 break;
+            case R.id.add_photo:
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+                break;
+        }
+    }
+
+    public int PICK_IMAGE = 1; //request code:     int: If >= 0, this code will be returned in onActivityResult() when the activity exits.
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_IMAGE) {
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri)
+                    Photo_status.setText("Photo has been saved");
+            }
         }
     }
 }
