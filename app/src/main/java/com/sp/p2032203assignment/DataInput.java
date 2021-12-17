@@ -3,17 +3,22 @@ package com.sp.p2032203assignment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DataInput#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DataInput extends Fragment {
+public class DataInput extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +28,9 @@ public class DataInput extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button buttonSave;
+    private Button buttonCancel;
 
     public DataInput() {
         // Required empty public constructor
@@ -60,6 +68,27 @@ public class DataInput extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_data_input, container, false);
+        View view = inflater.inflate(R.layout.fragment_data_input, container, false);
+        buttonSave = (Button) view.findViewById(R.id.save_button);
+        buttonSave.setOnClickListener(this);
+        buttonCancel = (Button) view.findViewById(R.id.kancel_button);
+        buttonCancel.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.save_button:
+                Toast.makeText(getContext(), "has been saved", Toast.LENGTH_SHORT).show();
+//                FragmentManager fm = getParentFragmentManager();
+//                FragmentTransaction transaction = fm.beginTransaction();
+//                transaction.replace(R.id.fragment, BlankFragment.class, null);  // Replace whatever is in the fragment_container view with this fragment
+//                transaction.commit();   // Commit the transaction
+                break;
+            case R.id.kancel_button:
+                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
+                break;
+        }
     }
 }

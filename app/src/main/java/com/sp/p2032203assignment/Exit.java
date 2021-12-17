@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,10 +46,7 @@ public class Exit extends Fragment implements View.OnClickListener {
                 System.exit(0);
                 break;
             case R.id.no_exit:
-                FragmentManager fm = getParentFragmentManager();
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.fragment, BlankFragment.class, null);  // Replace whatever is in the fragment_container view with this fragment
-                transaction.commit();   // Commit the transaction
+                Navigation.findNavController(v).navigate(R.id.action_exit_to_home); //safe args is better but i lazy
                 break;
         }
 

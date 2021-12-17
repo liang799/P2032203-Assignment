@@ -14,7 +14,11 @@
         android:id="@+id/dataInput"
         android:name="com.sp.p2032203assignment.DataInput"
         android:label="fragment_data_input"
-        tools:layout="@layout/fragment_data_input" />
+        tools:layout="@layout/fragment_data_input" >
+        <action
+            android:id="@+id/action_dataInput_to_home"
+            app:destination="@id/home" />
+    </fragment>
     <fragment
         android:id="@+id/display"
         android:name="com.sp.p2032203assignment.InformationDisplay"
@@ -29,5 +33,9 @@
         android:id="@+id/exit"
         android:name="com.sp.p2032203assignment.Exit"
         android:label="fragment_exit"
-        tools:layout="@layout/fragment_exit" />
+        tools:layout="@layout/fragment_exit" >
+        <action
+            android:id="@+id/action_exit_to_home"
+            app:destination="@id/home" />
+    </fragment>
 </navigation>
