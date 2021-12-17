@@ -81,10 +81,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.save_button:
                 Toast.makeText(getContext(), "has been saved", Toast.LENGTH_SHORT).show();
-//                FragmentManager fm = getParentFragmentManager();
-//                FragmentTransaction transaction = fm.beginTransaction();
-//                transaction.replace(R.id.fragment, BlankFragment.class, null);  // Replace whatever is in the fragment_container view with this fragment
-//                transaction.commit();   // Commit the transaction
+                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display); //safe args is better but i lazy
                 break;
             case R.id.kancel_button:
                 Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
