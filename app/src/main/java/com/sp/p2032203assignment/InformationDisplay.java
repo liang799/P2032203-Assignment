@@ -1,5 +1,6 @@
 package com.sp.p2032203assignment;
 
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,10 +17,9 @@ import android.widget.ImageButton;
 public class InformationDisplay extends Fragment {
 
     RecyclerView recyclerView;
-    String s1[] = {"lore", "ipsum", "dolor"};
-    String s2[] = {"descr", "descr", "descr"};
-    int images[] = {R.drawable.avatar, R.drawable.awk, R.drawable.feature};
-
+    DeliveryHelper helper = null;
+    Cursor model = null;
+    CustomAdapter adapter = null;
 
     public InformationDisplay() {
         // Required empty public constructor
@@ -30,6 +30,8 @@ public class InformationDisplay extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         getActivity().setTitle("Information Display");
+        helper = new DeliveryHelper(getContext());
+        model = helper.getAll();
     }
 
     @Override
@@ -37,7 +39,7 @@ public class InformationDisplay extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_display, container, false);
-        CustomAdapter adapter = new CustomAdapter(getActivity(), s1, s2, images);
+        adapter = new CustomAdapter(getActivity(), model);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

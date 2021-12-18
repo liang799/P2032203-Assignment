@@ -21,6 +21,7 @@ import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
+    private RadioGroup deliveryStatus;
     private Button buttonSave;
     private Button buttonCancel;
     private ImageButton buttonPhoto;
@@ -91,6 +93,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
         getActivity().setTitle("Data Input");
 
         gpsTracker = new GPSTracker(getContext());
+        helper = new DeliveryHelper(getContext());
     }
 
     @Override
@@ -98,6 +101,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_input, container, false);
+        deliveryStatus = (RadioGroup) view.findViewById(R.id.deliver_ans);
         parcel_textview = (TextView) view.findViewById(R.id.parcel_input);
         photo_status = (TextView) view.findViewById(R.id.photo_status);
         location_textview = (TextView) view.findViewById(R.id.location_input);
@@ -131,23 +135,33 @@ public class DataInput extends Fragment implements View.OnClickListener {
             case R.id.save_button:
                 String parcelStr = parcel_textview.getText().toString();
                 String locationStr = location_textview.getText().toString();
-                String uri;
+                String uri = "";
+                String status = "";
+
                 if (selectedImageUri == null) {
                     Toast.makeText(getContext(), "Please select an image", Toast.LENGTH_SHORT).show();
                     return;
-                } else
+                } else {
                     uri = selectedImageUri.toString();
+                }
+                switch (deliveryStatus.getCheckedRadioButtonId()) {
+                    case R.id.deliver_yes:
+                        status = "Delivered";
+                        break;
+                    case R.id.deliver_no:
+                        status = "Pending";
+                        break;
+                }
+                helper.insert(parcelStr, locationStr, uri, status);
+
                 Toast.makeText(getContext(), parcelStr + " has been saved", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display); //safe args is better but i lazy
                 break;
             case R.id.kancel_button:
                 Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
                 break;
-            case R.id.deliver_yes:
-                break;
-            case R.id.deliver_no:
-                break;
-
+            default:
+                throw new IllegalStateException("Unexpected value: " + v.getId());
         }
     }
 

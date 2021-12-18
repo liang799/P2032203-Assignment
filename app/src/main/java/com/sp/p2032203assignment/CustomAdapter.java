@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private String data1[], data2[];
-    private int images[];
+    private Cursor cursor;
     private Context context;
 
-    public CustomAdapter(Context ct, String[] s1, String[] s2, int[] img) {
+    public CustomAdapter(Context ct, Cursor c) {
         context = ct;
-        data1 = s1;
-        data2 = s2;
-        images = img;
+        cursor = c;
     }
 
     @NonNull
@@ -37,25 +35,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.myText2.setText(data2[position]);
-        holder.myImage.setImageResource(images[position]);
-
+        cursor.moveToPosition(position);
+        holder.address.setText(cursor.getString(2));
+        holder.pack.setImageURI(Uri.parse(cursor.getString(3)));
     }
 
     @Override
     public int getItemCount() {
-        return data1.length;
+        return cursor.getCount();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView myText2;
-        ImageView myImage;
+        TextView address;
+        ImageView pack;
 
         public ViewHolder(View view) {
             super(view);
-            myText2 = itemView.findViewById(R.id.textView12);
-            myImage = itemView.findViewById(R.id.imageView3);
+            address = itemView.findViewById(R.id.address_bind_me);
+            pack = itemView.findViewById(R.id.package_bind_me);
         }
 
     }
