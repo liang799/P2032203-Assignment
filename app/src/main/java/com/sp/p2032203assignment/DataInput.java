@@ -25,6 +25,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link DataInput#newInstance} factory method to
@@ -44,14 +46,18 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private Button buttonSave;
     private Button buttonCancel;
     private ImageButton buttonPhoto;
-    private TextView Photo_status;
+    private ImageButton buttonLocation;
+    private TextView photo_status;
+    private TextView parcel_textview;
+    private TextView location_textview;
+    private Uri selectedImageUri = null;
+    private GPSTracker gpsTracker;
+    private double latitude = 0.0d;
+    private double longitude = 0.0d;
 
     private Cursor model = null;
     private CustomAdapter adapter = null;
-    private ListView list;
     private DeliveryHelper helper = null;
-    private TabHost host;
-    private boolean showMenu = false;
 
     public DataInput() {
         // Required empty public constructor
@@ -83,6 +89,8 @@ public class DataInput extends Fragment implements View.OnClickListener {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         getActivity().setTitle("Data Input");
+
+        gpsTracker = new GPSTracker(getContext());
     }
 
     @Override
@@ -90,25 +98,29 @@ public class DataInput extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_input, container, false);
-        Photo_status = (TextView) view.findViewById(R.id.photo_status);
+        parcel_textview = (TextView) view.findViewById(R.id.parcel_input);
+        photo_status = (TextView) view.findViewById(R.id.photo_status);
+        location_textview = (TextView) view.findViewById(R.id.location_input);
         buttonSave = (Button) view.findViewById(R.id.save_button);
         buttonSave.setOnClickListener(this);
         buttonCancel = (Button) view.findViewById(R.id.kancel_button);
         buttonCancel.setOnClickListener(this);
         buttonPhoto = (ImageButton) view.findViewById(R.id.add_photo);
         buttonPhoto.setOnClickListener(this);
+        buttonLocation = (ImageButton) view.findViewById(R.id.add_location);
+        buttonLocation.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.save_button:
-                Toast.makeText(getContext(), "has been saved", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display); //safe args is better but i lazy
-                break;
-            case R.id.kancel_button:
-                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
+            case R.id.add_location:
+                if (gpsTracker.canGetLocation()) {
+                    latitude = gpsTracker.getLatitude();
+                    longitude = gpsTracker.getLongitude();
+                    location_textview.setText(String.valueOf(latitude) + ", " + String.valueOf(longitude));
+                }
                 break;
             case R.id.add_photo:
                 Intent intent = new Intent();
@@ -116,6 +128,26 @@ public class DataInput extends Fragment implements View.OnClickListener {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
                 break;
+            case R.id.save_button:
+                String parcelStr = parcel_textview.getText().toString();
+                String locationStr = location_textview.getText().toString();
+                String uri;
+                if (selectedImageUri == null) {
+                    Toast.makeText(getContext(), "Please select an image", Toast.LENGTH_SHORT).show();
+                    return;
+                } else
+                    uri = selectedImageUri.toString();
+                Toast.makeText(getContext(), parcelStr + " has been saved", Toast.LENGTH_SHORT).show();
+                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display); //safe args is better but i lazy
+                break;
+            case R.id.kancel_button:
+                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
+                break;
+            case R.id.deliver_yes:
+                break;
+            case R.id.deliver_no:
+                break;
+
         }
     }
 
@@ -126,9 +158,9 @@ public class DataInput extends Fragment implements View.OnClickListener {
     {
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
-                Uri selectedImageUri = data.getData();
-                if (null != selectedImageUri)
-                    Photo_status.setText("Photo has been saved");
+                selectedImageUri = data.getData();
+                if (selectedImageUri != null)
+                    photo_status.setText("Image Saved");
             }
         }
     }

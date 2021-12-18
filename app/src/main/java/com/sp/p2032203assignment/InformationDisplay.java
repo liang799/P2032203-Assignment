@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -26,6 +28,7 @@ public class InformationDisplay extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         getActivity().setTitle("Information Display");
     }
 
@@ -40,4 +43,11 @@ public class InformationDisplay extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.filter, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
 }
