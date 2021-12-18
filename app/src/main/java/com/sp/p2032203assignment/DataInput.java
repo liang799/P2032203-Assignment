@@ -2,7 +2,9 @@ package com.sp.p2032203assignment;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,8 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +44,14 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private Button buttonSave;
     private Button buttonCancel;
     private ImageButton buttonPhoto;
-
     private TextView Photo_status;
+
+    private Cursor model = null;
+    private CustomAdapter adapter = null;
+    private ListView list;
+    private DeliveryHelper helper = null;
+    private TabHost host;
+    private boolean showMenu = false;
 
     public DataInput() {
         // Required empty public constructor

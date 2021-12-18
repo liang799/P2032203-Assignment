@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DeliveryHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "deliveryList.db";
-    private static final int SCHEMA_VERSION = 1;
+    private static final int SCHEMA_VERSION = 1;  //a formal declaration of how the database is organized
 
     public DeliveryHelper(Context context) {
         super(context, DATABASE_NAME, null, SCHEMA_VERSION);
