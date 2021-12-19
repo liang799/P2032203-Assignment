@@ -31,9 +31,14 @@
             android:id="@+id/action_display_to_map"
             app:destination="@id/map" />
         <argument
-            android:name="position"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:name="packageId"
+            app:argType="string" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="status"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/about"

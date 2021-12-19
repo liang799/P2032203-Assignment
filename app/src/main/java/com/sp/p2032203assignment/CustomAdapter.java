@@ -42,7 +42,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         holder.pack.setImageBitmap(helper.getPhoto(cursor));
         // Create the Bundle to pass, you can put String, Integer, or serializable object
         bundle = new Bundle();
-        bundle.putInt("position", position);
+        bundle.putString("packageId", helper.getPackageId(cursor));
+        bundle.putString("location", helper.getAddress(cursor));
+        bundle.putString("status", helper.getStatus(cursor));
         holder.itemView.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_display_to_map, bundle)
         );
