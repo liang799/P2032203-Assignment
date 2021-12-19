@@ -3,22 +3,14 @@ package com.sp.p2032203assignment;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +19,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     private Cursor cursor;
     private Context context;
     private DeliveryHelper helper;
+    private Bundle bundle;
 
     public CustomAdapter(Context ct, Cursor c, DeliveryHelper dh) {
         context = ct;
@@ -47,8 +40,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         cursor.moveToPosition(position);
         holder.address.setText(helper.getAddress(cursor));
         holder.pack.setImageBitmap(helper.getPhoto(cursor));
+        // Create the Bundle to pass, you can put String, Integer, or serializable object
+        bundle = new Bundle();
+        bundle.putInt("position", position);
         holder.itemView.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_display_to_map)
+                Navigation.createNavigateOnClickListener(R.id.action_display_to_map, bundle)
         );
     }
 
