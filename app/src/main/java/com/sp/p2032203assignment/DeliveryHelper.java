@@ -18,7 +18,7 @@ public class DeliveryHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         // Will be called once when the database is not created
         db.execSQL("CREATE TABLE package_table ( _id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " packageId TEXT, address TEXT, photo TEXT, status TEXT);");
+                " packageId TEXT, address TEXT, photo BLOB, status TEXT);");
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DeliveryHelper extends SQLiteOpenHelper {
 
     /* Write a record into package_table */
     public void insert (String packageId, String address,
-                        String photo, String status) {
+                        byte[] photo, String status) {
         ContentValues cv = new ContentValues();
 
         cv.put("packageId", packageId );
@@ -55,8 +55,8 @@ public class DeliveryHelper extends SQLiteOpenHelper {
         return (c.getString(2));
     }
 
-    public String getPhoto(Cursor c) {
-        return (c.getString(3));
+    public byte[] getPhoto(Cursor c) {
+        return (c.getBlob(3));
     }
 
     public String getStatus(Cursor c) {

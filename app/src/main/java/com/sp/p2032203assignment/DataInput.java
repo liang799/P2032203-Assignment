@@ -5,6 +5,7 @@ import static android.app.Activity.RESULT_OK;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +58,10 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private TextView photo_status;
     private TextView parcel_textview;
     private TextView location_textview;
+
+    private byte[] bArray;
     private Uri selectedImageUri = null;
+    private Bitmap bitmap = null;
     private GPSTracker gpsTracker;
     private double latitude = 0.0d;
     private double longitude = 0.0d;
@@ -144,7 +152,9 @@ public class DataInput extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(), "Please select an image", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    uri = selectedImageUri.toString();
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
+                    bArray = bos.toByteArray();
                 }
                 switch (deliveryStatus.getCheckedRadioButtonId()) {
                     case R.id.deliver_yes:
@@ -154,7 +164,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
                         status = "Pending";
                         break;
                 }
-                helper.insert(parcelStr, locationStr, uri, status);
+                helper.insert(parcelStr, locationStr, bArray, status);
 
                 Toast.makeText(getContext(), parcelStr + " has been saved", Toast.LENGTH_SHORT).show();
                 Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display); //safe args is better but i lazy
@@ -175,6 +185,11 @@ public class DataInput extends Fragment implements View.OnClickListener {
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
                 selectedImageUri = data.getData();
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImageUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 if (selectedImageUri != null) {
                     uploadedPhoto.setImageURI(selectedImageUri);
                     uploadedPhoto.setVisibility(View.VISIBLE);

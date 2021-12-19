@@ -4,6 +4,8 @@ package com.sp.p2032203assignment;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -19,6 +21,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     private Cursor cursor;
     private Context context;
+    private Bitmap bm;
+    private byte[] byteArray;
 
     public CustomAdapter(Context ct, Cursor c) {
         context = ct;
@@ -37,7 +41,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         cursor.moveToPosition(position);
         holder.address.setText(cursor.getString(2));
-        holder.pack.setImageURI(Uri.parse(cursor.getString(3)));
+        byteArray = cursor.getBlob(3);
+        bm = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
+        holder.pack.setImageBitmap(bm);
     }
 
     @Override
