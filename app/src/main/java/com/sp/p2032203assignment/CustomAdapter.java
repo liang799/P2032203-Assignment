@@ -21,12 +21,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     private Cursor cursor;
     private Context context;
-    private Bitmap bm;
-    private byte[] byteArray;
+    private DeliveryHelper helper;
 
-    public CustomAdapter(Context ct, Cursor c) {
+    public CustomAdapter(Context ct, Cursor c, DeliveryHelper dh) {
         context = ct;
         cursor = c;
+        helper = dh;
     }
 
     @NonNull
@@ -40,10 +40,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         cursor.moveToPosition(position);
-        holder.address.setText(cursor.getString(2));
-        byteArray = cursor.getBlob(3);
-        bm = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
-        holder.pack.setImageBitmap(bm);
+        holder.address.setText(helper.getAddress(cursor));
+        holder.pack.setImageBitmap(helper.getPhoto(cursor));
     }
 
     @Override
@@ -61,6 +59,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             address = itemView.findViewById(R.id.address_bind_me);
             pack = itemView.findViewById(R.id.package_bind_me);
         }
-
     }
 }

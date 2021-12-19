@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 public class DeliveryHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "deliveryList.db";
@@ -55,8 +57,11 @@ public class DeliveryHelper extends SQLiteOpenHelper {
         return (c.getString(2));
     }
 
-    public byte[] getPhoto(Cursor c) {
-        return (c.getBlob(3));
+    public Bitmap getPhoto(Cursor c) {
+        byte[] byteArray = c.getBlob(3);
+        Bitmap bm = BitmapFactory.decodeByteArray(byteArray, 0 ,byteArray.length);
+
+        return bm;
     }
 
     public String getStatus(Cursor c) {

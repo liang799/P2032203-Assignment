@@ -2,33 +2,24 @@ package com.sp.p2032203assignment;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -180,8 +171,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
     public int PICK_IMAGE = 1; //request code:     int: If >= 0, this code will be returned in onActivityResult() when the activity exits.
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
                 selectedImageUri = data.getData();
