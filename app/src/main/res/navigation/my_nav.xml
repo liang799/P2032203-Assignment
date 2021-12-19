@@ -26,7 +26,11 @@
         android:id="@+id/display"
         android:name="com.sp.p2032203assignment.InformationDisplay"
         android:label="fragment_display"
-        tools:layout="@layout/fragment_display" />
+        tools:layout="@layout/fragment_display" >
+        <action
+            android:id="@+id/action_display_to_map"
+            app:destination="@id/map" />
+    </fragment>
     <fragment
         android:id="@+id/about"
         android:name="com.sp.p2032203assignment.About"
@@ -41,4 +45,9 @@
             android:id="@+id/action_exit_to_home"
             app:destination="@id/home" />
     </fragment>
+    <fragment
+        android:id="@+id/map"
+        android:name="com.sp.p2032203assignment.Map"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>
