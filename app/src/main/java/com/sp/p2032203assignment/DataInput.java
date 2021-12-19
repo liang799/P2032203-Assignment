@@ -47,6 +47,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private RadioGroup deliveryStatus;
     private Button buttonSave;
     private Button buttonCancel;
+    private ImageView uploadedPhoto;
     private ImageButton buttonPhoto;
     private ImageButton buttonLocation;
     private TextView photo_status;
@@ -101,6 +102,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_data_input, container, false);
+        uploadedPhoto = (ImageView) view.findViewById(R.id.uploaded_photo);
         deliveryStatus = (RadioGroup) view.findViewById(R.id.deliver_ans);
         parcel_textview = (TextView) view.findViewById(R.id.parcel_input);
         photo_status = (TextView) view.findViewById(R.id.photo_status);
@@ -173,8 +175,11 @@ public class DataInput extends Fragment implements View.OnClickListener {
         if (resultCode == RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
                 selectedImageUri = data.getData();
-                if (selectedImageUri != null)
-                    photo_status.setText("Image Saved");
+                if (selectedImageUri != null) {
+                    uploadedPhoto.setImageURI(selectedImageUri);
+                    uploadedPhoto.setVisibility(View.VISIBLE);
+                    photo_status.setVisibility(View.INVISIBLE);
+                }
             }
         }
     }
