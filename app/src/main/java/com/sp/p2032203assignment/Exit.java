@@ -46,7 +46,7 @@ public class Exit extends Fragment implements View.OnClickListener {
                 System.exit(0);
                 break;
             case R.id.no_exit:
-                Navigation.findNavController(v).navigate(R.id.action_exit_to_home); //safe args is better but i lazy
+                Navigation.findNavController(v).navigate(R.id.action_exit_to_home);
                 break;
         }
 

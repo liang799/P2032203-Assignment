@@ -58,5 +58,9 @@
         android:id="@+id/map"
         android:name="com.sp.p2032203assignment.Map"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/action_map_to_display"
+            app:destination="@id/display" />
+    </fragment>
 </navigation>

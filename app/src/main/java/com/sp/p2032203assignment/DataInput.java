@@ -149,10 +149,10 @@ public class DataInput extends Fragment implements View.OnClickListener {
                 }
                 switch (deliveryStatus.getCheckedRadioButtonId()) {
                     case R.id.deliver_yes:
-                        status = "Delivered";
+                        status = "Package Delivered";
                         break;
                     case R.id.deliver_no:
-                        status = "Pending";
+                        status = "Package not Delivered";
                         break;
                 }
                 helper.insert(parcelStr, locationStr, bArray, status);
