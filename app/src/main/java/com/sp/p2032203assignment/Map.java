@@ -121,7 +121,8 @@ public class Map extends Fragment implements View.OnClickListener, OnMapReadyCal
         }
         map.addMarker(new MarkerOptions().position(deliveryLocation).title("Delivery Location"));
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(deliveryLocation, 15);
-        map.animateCamera(cameraUpdate);
+//        map.animateCamera(cameraUpdate);
+        map.moveCamera(cameraUpdate);
     }
 
 

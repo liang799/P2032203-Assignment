@@ -18,6 +18,10 @@ design requirements.
 ## "Data Input" Activity
 ## "Information Display" Activity
 
+## TODO
+- [ ] Enable user to edit data
+- [ ] Filter the data according to delivered/not delivered
+
 ## Prototype
 ![overview](pics/overview.png)
 
