@@ -9,11 +9,16 @@ import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -26,11 +31,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
 
 public class Map extends Fragment implements View.OnClickListener, OnMapReadyCallback {
+    private int position = -1;
     private TextView photo_status;
     private TextView parcel_textview;
     private TextView location_textview;
@@ -41,6 +48,7 @@ public class Map extends Fragment implements View.OnClickListener, OnMapReadyCal
     private String location;
     private MapView mapView;
     private GoogleMap map;
+    private LatLng deliveryLocation;
 
     public Map() {
         // Required empty public constructor
@@ -49,7 +57,7 @@ public class Map extends Fragment implements View.OnClickListener, OnMapReadyCal
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
     }
 
     @Override
@@ -64,6 +72,7 @@ public class Map extends Fragment implements View.OnClickListener, OnMapReadyCal
         mapView.getMapAsync(this);
 
         Bundle bundle = getArguments();
+        position = bundle.getInt("position");
         String status = bundle.getString("status");
         photo_status = (TextView) view.findViewById(R.id.map_text_status);
         location = bundle.getString("location");
@@ -106,14 +115,13 @@ public class Map extends Fragment implements View.OnClickListener, OnMapReadyCal
             latitude = Double.parseDouble(latlong[0]);
             longitude = Double.parseDouble(latlong[1]);
             // Updates the location and zoom of the MapView
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15);
-            map.animateCamera(cameraUpdate);
+            deliveryLocation = new LatLng(latitude, longitude);
         } else {
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(getLocationFromAddress(getContext(), location), 15);
-            map.animateCamera(cameraUpdate);
+            deliveryLocation = getLocationFromAddress(getContext(), location);
         }
-
-//        map.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(43.1, -87.9)));
+        map.addMarker(new MarkerOptions().position(deliveryLocation).title("Delivery Location"));
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(deliveryLocation, 15);
+        map.animateCamera(cameraUpdate);
     }
 
 
@@ -129,17 +137,29 @@ public class Map extends Fragment implements View.OnClickListener, OnMapReadyCal
             if (address == null) {
                 return null;
             }
-
             Address location = address.get(0);
             p1 = new LatLng(location.getLatitude(), location.getLongitude() );
 
         } catch (IOException ex) {
-
             ex.printStackTrace();
         }
 
         return p1;
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        if (position != -1) {
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("data_position", position);
+//            NavHostFragment.findNavController(this).navigate(R.id.action_map_to_dataInput);
+//            return true;
+//        } else {
+//         }
+//           NavHostFragment.findNavController(this).navigate(R.id.action_map_to_error);
+////            return false;
+////    }
+
     @Override
     public void onResume() {
         mapView.onResume();

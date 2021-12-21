@@ -16,10 +16,10 @@ import android.widget.ImageButton;
 
 public class InformationDisplay extends Fragment {
 
-    RecyclerView recyclerView;
-    DeliveryHelper helper = null;
-    Cursor model = null;
-    CustomAdapter adapter = null;
+    private RecyclerView recyclerView;
+    private DeliveryHelper helper = null;
+    private Cursor model = null;
+    private CustomAdapter adapter = null;
 
     public InformationDisplay() {
         // Required empty public constructor
@@ -40,7 +40,6 @@ public class InformationDisplay extends Fragment {
         View view = inflater.inflate(R.layout.fragment_display, container, false);  // Inflate the layout for this fragment
 
         adapter = new CustomAdapter(getActivity(), model, helper);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

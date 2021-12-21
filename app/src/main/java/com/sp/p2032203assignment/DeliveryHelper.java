@@ -49,6 +49,20 @@ public class DeliveryHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert("package_table", "packageId", cv);
     }
 
+    public void update (String packageId, String address,
+                        byte[] photo, String status) {
+        ContentValues cv = new ContentValues();
+
+        cv.put("packageId", packageId );
+        cv.put("address", address );
+        cv.put("photo", photo );
+        cv.put("status", status );
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our course which is stored in original name variable.
+        getWritableDatabase().update("package_table", cv, "_id = ?", new String[]{packageId});
+    }
+
     public String getPackageId(Cursor c) {
         return (c.getString(1));
     }

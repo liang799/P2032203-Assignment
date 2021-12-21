@@ -2,6 +2,7 @@ package com.sp.p2032203assignment;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -18,28 +19,18 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DataInput#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DataInput extends Fragment implements View.OnClickListener {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private RadioGroup deliveryStatus;
     private Button buttonSave;
     private Button buttonCancel;
@@ -58,38 +49,15 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private double longitude = 0.0d;
 
     private Cursor model = null;
-    private CustomAdapter adapter = null;
     private DeliveryHelper helper = null;
 
     public DataInput() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DataInput.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DataInput newInstance(String param1, String param2) {
-        DataInput fragment = new DataInput();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        //require empty constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
         getActivity().setTitle("Data Input");
 
         gpsTracker = new GPSTracker(getContext());
@@ -116,6 +84,28 @@ public class DataInput extends Fragment implements View.OnClickListener {
         buttonLocation.setOnClickListener(this);
         return view;
     }
+
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//        if (position != -1) {
+//            model = helper.getAll();
+//            model.moveToPosition(position);
+//            uploadedPhoto.setImageBitmap(helper.getPhoto(model));
+//            uploadedPhoto.setVisibility(View.VISIBLE);
+//            photo_status.setVisibility(View.INVISIBLE);
+//            switch (helper.getStatus(model)) {
+//                case "Package Delivered":
+//                    deliveryStatus.check(R.id.deliver_yes);
+//                    break;
+//                case "Package not Delivered":
+//                    deliveryStatus.check(R.id.deliver_no);
+//                    break;
+//            }
+//            parcel_textview.setText(helper.getPackageId(model));
+//            location_textview.setText(helper.getAddress(model));
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
@@ -155,13 +145,14 @@ public class DataInput extends Fragment implements View.OnClickListener {
                         status = "Package not Delivered";
                         break;
                 }
-                helper.insert(parcelStr, locationStr, bArray, status);
 
+                helper.insert(parcelStr, locationStr, bArray, status);
                 Toast.makeText(getContext(), parcelStr + " has been saved", Toast.LENGTH_SHORT).show();
-                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display); //safe args is better but i lazy
+                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_display);
                 break;
+
             case R.id.kancel_button:
-                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home); //safe args is better but i lazy
+                Navigation.findNavController(v).navigate(R.id.action_dataInput_to_home);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + v.getId());

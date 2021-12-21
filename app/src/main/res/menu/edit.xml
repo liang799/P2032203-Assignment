@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/ic_baseline_edit_24"
+        android:icon="@drawable/ic_baseline_remove_red_eye_24"
         android:title="Item"
         app:showAsAction="ifRoom" />
 </menu>
