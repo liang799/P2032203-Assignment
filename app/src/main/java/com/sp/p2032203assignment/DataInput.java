@@ -48,7 +48,7 @@ public class DataInput extends Fragment implements View.OnClickListener {
     private double latitude = 0.0d;
     private double longitude = 0.0d;
 
-    private Cursor model = null;
+//    private Cursor model = null;
     private DeliveryHelper helper = null;
 
     public DataInput() {

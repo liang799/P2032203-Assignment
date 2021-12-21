@@ -31,3 +31,9 @@ design requirements.
 ## Finalised Prototype
 ![overview](pics/finalFlash.png)
 Click this [link](https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/) to try it out
+
+## SQL Completed
+| status (0)            | percentage (1)  |
+| --------------------- | --------------- |
+| package delivered     | xxx             |
+| package not delivered | xxx             |

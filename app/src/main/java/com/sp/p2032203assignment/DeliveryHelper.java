@@ -63,6 +63,15 @@ public class DeliveryHelper extends SQLiteOpenHelper {
         getWritableDatabase().update("package_table", cv, "_id = ?", new String[]{packageId});
     }
 
+    public String getCompletedPercent() {
+        Cursor c = getReadableDatabase().rawQuery(
+            "SELECT status,ROUND((count(*)*100)/(SELECT count(*) FROM package_table)) as percentage " +
+                "FROM package_table GROUP BY status", null);
+//        return c.getColumnName(0);
+        c.moveToPosition(0);
+        return c.getString(1);
+    }
+
     public String getPackageId(Cursor c) {
         return (c.getString(1));
     }
