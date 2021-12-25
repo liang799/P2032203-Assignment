@@ -18,6 +18,22 @@ design requirements.
 ## "Data Input" Activity
 ## "Information Display" Activity
 
-## Prototype 1
+## TODO
+- [ ] Enable user to edit data
+- [ ] Filter the data according to delivered/not delivered
+
+## Prototype
 ![overview](pics/overview.png)
-Click this [link](https://xd.adobe.com/view/2ab55f7a-1fb0-4f49-bfcc-20b372b67357-7fe6/) to try it out
+
+## Semi-final Prototype
+![overview](pics/final.png)
+
+## Finalised Prototype
+![overview](pics/finalFlash.png)
+Click this [link](https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/) to try it out
+
+## SQL Delivery Percentage
+| status (0)            | percentage (1)  |
+| --------------------- | --------------- |
+| package delivered     | xxx             |
+| package not delivered | xxx             |

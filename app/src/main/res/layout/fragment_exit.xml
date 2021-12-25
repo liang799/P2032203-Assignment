@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/classy_white"
+    tools:context=".Exit">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="76dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginRight="76dp"
+            android:layout_marginBottom="48dp"
+            android:gravity="center"
+            android:text="Do you want to exit this app?"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/exit_me"
+            android:layout_width="304dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/action_blue"
+            android:text="Yes"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="48dp" />
+
+        <Button
+            android:id="@+id/no_exit"
+            android:layout_width="304dp"
+            android:layout_height="96dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="48dp"
+            android:textAllCaps="false"
+            android:text="No"
+            android:textSize="20sp"
+            app:cornerRadius="48dp" />
+    </LinearLayout>
+
+</FrameLayout>
