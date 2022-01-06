@@ -2,6 +2,7 @@
 [![issues](https://img.shields.io/github/issues/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/issues/new)
 [![fork](https://img.shields.io/github/forks/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/fork)
 [![star](https://img.shields.io/github/stars/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/stargazers)
+[![download](https://img.shields.io/github/downloads/liang799/P2032203-Assignment/v1.0.0/total)](https://github.com/liang799/P2032203-Assignment/releases/download/v1.0.0/delivery-tracker.apk)
 ![license](https://img.shields.io/github/license/liang799/P2032203-Assignment)
 
 ### Info
