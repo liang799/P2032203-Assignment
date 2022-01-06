@@ -36,16 +36,16 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         completed_text = (TextView) v.findViewById(R.id.completed_per);
-        completed_text.setText(helper.getCompletedPercent() + "% Done");
-        model.moveToLast();
-        first = (TextView) v.findViewById(R.id.first);
-        first.setText(helper.getAddress(model));
-        model.moveToPrevious();
-        second = (TextView) v.findViewById(R.id.second);
-        second.setText(helper.getAddress(model));
-        model.moveToPrevious();
-        third = (TextView) v.findViewById(R.id.third);
-        third.setText(helper.getAddress(model));
+//        completed_text.setText(helper.getCompletedPercent() + "% Done");
+//        model.moveToLast();
+//        first = (TextView) v.findViewById(R.id.first);
+//        first.setText(helper.getAddress(model));
+//        model.moveToPrevious();
+//        second = (TextView) v.findViewById(R.id.second);
+//        second.setText(helper.getAddress(model));
+//        model.moveToPrevious();
+//        third = (TextView) v.findViewById(R.id.third);
+//        third.setText(helper.getAddress(model));
 
 
         return v;
