@@ -35,6 +35,8 @@ design requirements.
   <a href="https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/" target="_blank">
   <img src="pics/CTA.png" />
   </a>
+  <br>
+  <br>
 </div>
 
 ## Misc
