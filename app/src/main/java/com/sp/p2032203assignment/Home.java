@@ -36,16 +36,24 @@ public class Home extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         completed_text = (TextView) v.findViewById(R.id.completed_per);
-//        completed_text.setText(helper.getCompletedPercent() + "% Done");
-//        model.moveToLast();
-//        first = (TextView) v.findViewById(R.id.first);
-//        first.setText(helper.getAddress(model));
-//        model.moveToPrevious();
-//        second = (TextView) v.findViewById(R.id.second);
-//        second.setText(helper.getAddress(model));
-//        model.moveToPrevious();
-//        third = (TextView) v.findViewById(R.id.third);
-//        third.setText(helper.getAddress(model));
+        first = (TextView) v.findViewById(R.id.first);
+        second = (TextView) v.findViewById(R.id.second);
+        third = (TextView) v.findViewById(R.id.third);
+
+        try {
+            completed_text.setText(helper.getCompletedPercent() + "% Done");
+            model.moveToLast();
+            first.setText(helper.getAddress(model));
+            model.moveToPrevious();
+            second.setText(helper.getAddress(model));
+            model.moveToPrevious();
+            third.setText(helper.getAddress(model));
+        } catch (Exception e) {
+            // This will catch any exception, because they are all descended from Exception
+            System.out.println("Error " + e.getMessage());
+            return null;
+        }
+
 
 
         return v;
