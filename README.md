@@ -1,5 +1,7 @@
 # P2032203-Assignment
+[![fork](https://img.shields.io/github/forks/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/fork)
 [![issues](https://img.shields.io/github/issues/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/issues/new)
+
 ### Info
 - MAD Lab Assignment done during Y2S2 Holidays
 - Click this [link](https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/) to try it out
