@@ -16,18 +16,15 @@ design requirements.
   3. To launch an "Information Display" activity.
   4. To exit the application.
 
-## "Data Input" Activity
-## "Information Display" Activity
-
 ## TODO
 - [ ] Enable user to edit data
 - [ ] Filter the data according to delivered/not delivered
 
-## Prototype
+<!---- ## Prototype
 ![overview](pics/overview.png)
 
 ## Semi-final Prototype
-![overview](pics/final.png)
+![overview](pics/final.png) ---->
 
 ## Finalised Prototype
 ![overview](pics/finalFlash.png)
