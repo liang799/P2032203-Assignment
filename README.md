@@ -1,6 +1,8 @@
 # P2032203-Assignment
-[![fork](https://img.shields.io/github/forks/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/fork)
 [![issues](https://img.shields.io/github/issues/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/issues/new)
+[![fork](https://img.shields.io/github/forks/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/fork)
+[![star](https://img.shields.io/github/stars/liang799/P2032203-Assignment)](https://github.com/liang799/P2032203-Assignment/stargazers)
+![license](https://img.shields.io/github/license/liang799/P2032203-Assignment)
 
 ### Info
 - MAD Lab Assignment done during Y2S2 Holidays
