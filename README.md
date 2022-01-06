@@ -30,7 +30,7 @@ design requirements.
 ## Finalised Prototype
 ![overview](pics/finalFlash.png)
 <!-- Click this [link](https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/) to try it out -->
-<a href="te" rel="some text">![Foo](pics/CTA.png)</a>
+<a href="https://xd.adobe.com/view/9d563f22-94b8-4581-83c2-aa175e78e35c-c805/">![CTA](pics/CTA.png)</a>
 ## Misc
 ### SQL Delivery Percentage
 | status (0)            | percentage (1)  |
