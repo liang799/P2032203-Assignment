@@ -11,6 +11,7 @@
 ### TODO
 - [ ] Enable user to edit data
 - [ ] Filter the data according to delivered/not delivered
+- [ ] Add pie chart api
 
 ## Concept
 In this assignment, you are to develop a data entry application. This is an open concept assignment where you have to decide on the prupose of this application athat must meet the basic
